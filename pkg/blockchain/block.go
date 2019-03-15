@@ -11,7 +11,7 @@ import (
 type Block struct {
 	Index        int
 	timestamp    time.Time
-	data         string
+	Data         string
 	hash         string
 	previousHash string
 	nonce        uint64
