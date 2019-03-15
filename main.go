@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"blockgo/pkg/blockchain"
+	"fmt"
+)
 
 func main() {
-    fmt.Println("hello world")
+	bc := blockchain.NewBlockchain()
+	fmt.Println(bc.GetLastBlock())
 }
