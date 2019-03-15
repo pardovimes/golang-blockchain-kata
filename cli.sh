@@ -1,5 +1,5 @@
 #!/bin/bash
 
-docker run --rm -ti -w="/app" \
+docker run --rm -ti -w="/go/src" \
     -v $PWD/docker/.composer:/home/wwwagent/.composer:delegated \
-    -v $PWD:/app golang /bin/bash
+    -v $PWD:/go/src/blockgo golang /bin/bash
