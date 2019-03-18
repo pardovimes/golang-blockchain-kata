@@ -1,7 +1,6 @@
 package blockchain
 
 import (
-	"fmt"
 	"strings"
 	"time"
 )
@@ -33,7 +32,7 @@ func (bc Blockchain) GetLastBlock() Block {
 	return bc.Chain[len(bc.Chain)-1]
 }
 
-func (bc Blockchain) Push(b Block) {
+func (bc *Blockchain) Push(b Block) {
 	b.previousHash = bc.GetLastBlock().hash
 	b.hash = b.CalculateHash()
 	bc.Mine(b)
@@ -45,5 +44,20 @@ func (bc Blockchain) Mine(b Block) {
 		b.nonce++
 		b.hash = b.CalculateHash()
 	}
-	fmt.Println(b)
+	//fmt.Println(b)
+}
+
+func (bc Blockchain) IsValid() bool {
+	for index := 1; index < len(bc.Chain); index++ {
+		previousBlock := bc.Chain[index-1]
+		currentBlock := bc.Chain[index]
+
+		if currentBlock.hash != currentBlock.CalculateHash() {
+			return false
+		}
+		if currentBlock.previousHash != previousBlock.hash {
+			return false
+		}
+	}
+	return true
 }

@@ -9,12 +9,12 @@ import (
 
 func main() {
 	bc := blockchain.NewBlockchain()
-	fmt.Println(bc.GetLastBlock())
-	for index := 1; index < 50; index++ {
+	for index := 1; index < 10; index++ {
 		b := blockchain.Block{
 			Index:     index,
 			Data:      "amount: " + strconv.Itoa(50),
 			Timestamp: time.Now()}
 		bc.Push(b)
 	}
+	fmt.Println(bc.IsValid())
 }
