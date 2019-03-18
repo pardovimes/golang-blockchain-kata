@@ -10,7 +10,7 @@ import (
 // Block ...
 type Block struct {
 	Index        int
-	timestamp    time.Time
+	Timestamp    time.Time
 	Data         string
 	hash         string
 	previousHash string
@@ -21,7 +21,7 @@ func (b Block) CalculateHash() string {
 	hasher := sha256.New()
 	stringToHash := strconv.Itoa(b.Index) +
 		b.previousHash +
-		b.timestamp.String() +
+		b.Timestamp.String() +
 		strconv.Itoa(int(b.nonce))
 	hasher.Write([]byte(stringToHash))
 	sha := hex.EncodeToString(hasher.Sum(nil))

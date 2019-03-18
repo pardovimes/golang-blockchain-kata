@@ -3,6 +3,7 @@ package blockchain
 import (
 	"fmt"
 	"strings"
+	"time"
 )
 
 // Blockchain ...
@@ -20,7 +21,11 @@ func NewBlockchain() *Blockchain {
 }
 
 func createGenesisBlock() Block {
-	b := Block{Index: 0, Data: "Genesis"}
+	b := Block{
+		Index:     0,
+		Data:      "Genesis",
+		Timestamp: time.Now()}
+	b.hash = b.CalculateHash()
 	return b
 }
 
@@ -40,5 +45,5 @@ func (bc Blockchain) Mine(b Block) {
 		b.nonce++
 		b.hash = b.CalculateHash()
 	}
-	fmt.Println("Minado!")
+	fmt.Println(b)
 }
